@@ -18,7 +18,7 @@ function newTodo(name: string) {
 }
 function reducer(state: Todo[], action: ActionType): Todo[] {
   switch (action.type) {
-    case 'ADD_NEW':
+    case ACTIONS.ADD_NEW:
       return [...state, newTodo(action.payload.name)];
     default:
       return state;
@@ -28,7 +28,7 @@ function reducer(state: Todo[], action: ActionType): Todo[] {
 function App() {
   const [todos, dispatch] = useReducer(reducer, []);
   const [name, setName] = useState('');
-
+  console.log(name);
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     dispatch({ type: ACTIONS.ADD_NEW, payload: { name: name } });
@@ -43,6 +43,16 @@ function App() {
           onChange={(e) => setName(e.target.value)}
         />
       </form>
+
+      <ul>
+        {todos.map((todo) => {
+          return (
+            <li key={todo.id}>
+              {todo.name} {todo.completed ? '✔️' : '❌'}
+            </li>
+          );
+        })}
+      </ul>
     </>
   );
 }
