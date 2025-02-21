@@ -7,6 +7,7 @@ import type { Todo, ActionType } from './types';
 import useLocalStorage from './useLocalStorage';
 import useUpdateLogger from './useUpdateLogger';
 import ModalExample from './components/ModalExample';
+import TransitionHookComponent from './components/TransitionHookComponent';
 
 export const ACTIONS = {
   ADD_NEW: 'add_todo',
@@ -83,6 +84,7 @@ function App() {
         onChange={(e) => setValue(e.target.value)}
       />
       <ModalExample />
+      <TransitionHookComponent />
     </div>
   );
 }
