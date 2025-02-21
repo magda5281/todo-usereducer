@@ -5,6 +5,7 @@ import TodoComponent from './components/Todo';
 
 import type { Todo, ActionType } from './types';
 import useLocalStorage from './useLocalStorage';
+import useUpdateLogger from './useUpdateLogger';
 
 export const ACTIONS = {
   ADD_NEW: 'add_todo',
@@ -36,6 +37,7 @@ function App() {
   const [todos, dispatch] = useReducer(reducer, []);
   const [name, setName] = useState('');
   const [value, setValue] = useLocalStorage('value', '');
+  useUpdateLogger(name);
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     dispatch({ type: ACTIONS.ADD_NEW, payload: { name, id: 0 } });
