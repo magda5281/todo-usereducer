@@ -6,6 +6,7 @@ import TodoComponent from './components/Todo';
 import type { Todo, ActionType } from './types';
 import useLocalStorage from './useLocalStorage';
 import useUpdateLogger from './useUpdateLogger';
+import ModalExample from './components/ModalExample';
 
 export const ACTIONS = {
   ADD_NEW: 'add_todo',
@@ -44,7 +45,7 @@ function App() {
     setName('');
   }
   return (
-    <>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
       <form
         onSubmit={handleSubmit}
         style={{ display: 'flex', justifyContent: 'center' }}
@@ -67,7 +68,6 @@ function App() {
           />
         </div>
       </form>
-
       <ul>
         {todos.map((todo) => {
           return (
@@ -75,7 +75,6 @@ function App() {
           );
         })}
       </ul>
-
       <label htmlFor='value'>local storage </label>
       <input
         name='value'
@@ -83,7 +82,8 @@ function App() {
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
-    </>
+      <ModalExample />
+    </div>
   );
 }
 
