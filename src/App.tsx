@@ -1,9 +1,10 @@
 import { useReducer, useState } from 'react';
 
 import './App.css';
-import TodoComponent from './components/todo';
+import TodoComponent from './components/Todo';
 
 import type { Todo, ActionType } from './types';
+import useLocalStorage from './useLocalStorage';
 
 export const ACTIONS = {
   ADD_NEW: 'add_todo',
@@ -13,10 +14,7 @@ export const ACTIONS = {
 function newTodo(name: string): Todo {
   return { id: Date.now(), name: name, completed: false };
 }
-function reducer(
-  state: Todo[],
-  action: Omit<ActionType, 'payload.name'>
-): Todo[] {
+function reducer(state: Todo[], action: ActionType): Todo[] {
   switch (action.type) {
     case ACTIONS.ADD_NEW:
       return [...state, newTodo(action.payload?.name)];
@@ -37,20 +35,35 @@ function reducer(
 function App() {
   const [todos, dispatch] = useReducer(reducer, []);
   const [name, setName] = useState('');
+  const [value, setValue] = useLocalStorage('value', '');
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    dispatch({ type: ACTIONS.ADD_NEW, payload: newTodo(name) });
-
+    dispatch({ type: ACTIONS.ADD_NEW, payload: { name, id: 0 } });
     setName('');
   }
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input
-          type='text'
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+      <form
+        onSubmit={handleSubmit}
+        style={{ display: 'flex', justifyContent: 'center' }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1rem',
+            width: '100%',
+            maxWidth: '40rem',
+          }}
+        >
+          <label htmlFor='name'>Todo name</label>
+          <input
+            name='name'
+            type='text'
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
       </form>
 
       <ul>
@@ -60,6 +73,14 @@ function App() {
           );
         })}
       </ul>
+
+      <label htmlFor='value'>local storage </label>
+      <input
+        name='value'
+        type='text'
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
     </>
   );
 }
