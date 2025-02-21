@@ -1,12 +1,13 @@
 import type { Todo, ActionType } from '../types';
 import { ACTIONS } from '../App.tsx';
+import React from 'react';
 
 interface TodoProps {
   todo: Todo;
   dispatch: React.ActionDispatch<[action: ActionType]>;
 }
 
-export default function Todo({ todo, dispatch }: TodoProps) {
+const Todo = React.memo(({ todo, dispatch }: TodoProps) => {
   return (
     <div
       style={{
@@ -44,4 +45,5 @@ export default function Todo({ todo, dispatch }: TodoProps) {
       </div>
     </div>
   );
-}
+});
+export default Todo;
