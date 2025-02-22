@@ -2,9 +2,9 @@ import { useState, useRef } from 'react';
 import ConfirmationModal from './ConfirmationModal';
 
 export type ConfirmationModalHandle = {
-  focusClose?: () => void;
-  focusConfirm?: () => void;
-  focusDeny?: () => void;
+  focusClose: () => void;
+  focusConfirm: () => void;
+  focusDeny: () => void;
 } & HTMLDivElement;
 export default function ExampleImperativehandle() {
   const [open, setOpen] = useState(false);

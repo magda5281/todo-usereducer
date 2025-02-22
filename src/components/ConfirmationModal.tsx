@@ -12,7 +12,6 @@ const ConfirmationModal = forwardRef<
   console.log(ref);
   useImperativeHandle(ref, () => {
     return {
-      ref,
       focusClose: () => closeRef.current?.focus(),
       focusConfirm: () => confirmRef.current?.focus(),
       focusDeny: () => denyRef.current?.focus(),
