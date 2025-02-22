@@ -10,6 +10,7 @@ import ModalExample from './components/ModalExample';
 import TransitionHookComponent from './components/TransitionHookComponent';
 import SlugishNonResApps from './components/SlugishNonResApps';
 import ImperativeHandleComponent from './components/ImperativeHandlecomponent';
+import ExampleImperativehandle from './components/ExampleImperativehandle';
 
 export const ACTIONS = {
   ADD_NEW: 'add_todo',
@@ -89,6 +90,7 @@ function App() {
       <TransitionHookComponent />
       <SlugishNonResApps />
       <ImperativeHandleComponent />
+      <ExampleImperativehandle />
     </div>
   );
 }
