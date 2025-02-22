@@ -1,16 +1,20 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import CustomInput from './CustomInput';
+
+export type CustomInputHandle = HTMLInputElement & {
+  alertHi: () => void;
+};
 
 export default function ImperativeHandleComponent() {
   const [value, setValue] = useState('red');
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  useEffect(() => {
-    console.log('Setting focus');
-    inputRef.current?.focus();
-  }, []);
+  const inputRef = useRef<CustomInputHandle | null>(null);
+
   return (
     <div>
-      <h2>UseImperativeHandle example</h2>
+      <h2>UseImperativeHandle example </h2>
+      <p>
+        useImperativeHandle hook if you want your ref to point to something else{' '}
+      </p>
       <CustomInput
         ref={inputRef}
         value={value}
@@ -22,8 +26,7 @@ export default function ImperativeHandleComponent() {
       <br />
       <button
         onClick={() => {
-          console.log('Ref:', inputRef.current); // Check if ref is correctly set
-          inputRef.current?.focus();
+          inputRef.current?.alertHi();
         }}
       >
         Focus

@@ -1,9 +1,17 @@
-import { forwardRef } from 'react';
+import { forwardRef, useImperativeHandle } from 'react';
 
-const CustomInput = forwardRef<
-  HTMLInputElement,
-  React.InputHTMLAttributes<HTMLInputElement> & { style?: React.CSSProperties }
->(({ style, ...props }, ref) => {
+const CustomInput = forwardRef((props, ref) => {
+  useImperativeHandle(
+    ref,
+    () => {
+      return {
+        alertHi: () => {
+          alert('Hi');
+        },
+      };
+    },
+    []
+  );
   return (
     <input
       ref={ref}
@@ -13,7 +21,6 @@ const CustomInput = forwardRef<
         borderBottom: '.2em solid black',
         borderTopRightRadius: '.25rem',
         borderTopLeftRadius: '.25rem',
-        ...style,
       }}
     />
   );
