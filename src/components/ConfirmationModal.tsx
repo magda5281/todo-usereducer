@@ -9,7 +9,6 @@ const ConfirmationModal = forwardRef<
   const confirmRef = useRef<HTMLButtonElement | null>(null);
   const denyRef = useRef<HTMLButtonElement | null>(null);
 
-  console.log(ref);
   useImperativeHandle(ref, () => {
     return {
       focusClose: () => closeRef.current?.focus(),
