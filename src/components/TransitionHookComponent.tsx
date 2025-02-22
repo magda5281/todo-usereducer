@@ -26,6 +26,10 @@ export default function TransitionHookComponent() {
 
   return (
     <div>
+      <h2>
+        useTransitionHook sets low priority to code to process it when other
+        more important code is processed{' '}
+      </h2>
       <input type='text' value={input} onChange={handleChange} />
       <ul>
         {isPending

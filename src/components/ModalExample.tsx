@@ -11,7 +11,11 @@ export default function ModalExample() {
     popup.current.style.top = `${bottom + 25}px`;
   }, [show]);
   return (
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <h2>
+        useLayoutEffect to be used when you want to move dom elements before
+        they are painted on the page
+      </h2>
       <button ref={button} onClick={() => setShow((prev) => !prev)}>
         Click here
       </button>

@@ -10,6 +10,9 @@ export default function SlugishNonResApps() {
   }
   return (
     <div>
+      <h2>
+        Slugish Non Responsive component uses useDeferredValue like a debounce
+      </h2>
       <input type='text' value={input} onChange={handleChange} />
       <List input={input} />
     </div>
